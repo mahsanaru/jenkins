@@ -1,1 +1,2 @@
-print ("success")
+print("success")
+return 0
