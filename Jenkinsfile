@@ -1,20 +1,13 @@
-pipeline {
-    agent any
 
+
+pipeline {
+    agent {
+        // Define agent details here
+    }
     stages {
-        stage('Build') {
+        stage('Example stage 1') {
             steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                sh("kubectl get pods")
             }
         }
     }
