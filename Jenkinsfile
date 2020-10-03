@@ -1,21 +1,17 @@
-podTemplate(yaml: """
-apiVersion: v1
-kind: Pod
-metadata:
-  labels:
-    some-label: some-label-value
-spec:
-  containers:
-  - name: busybox
-    image: busybox
-    command:
-    - cat
-    tty: true
-"""
-) {
-    node(POD_LABEL) {
-      container('busybox') {
-        sh "hostname"
+pipeline {
+  agent {
+    kubernetes {
+      defaultContainer 'maven'
+      yamlFile 'KubernetesPod.yaml'
+    }
+  }
+
+  stages {
+    stage('Run maven') {
+      steps {
+        sh 'mvn -version'
+        sh "echo Workspace dir is ${pwd()}"
       }
     }
+  }
 }
