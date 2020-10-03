@@ -1,17 +1,11 @@
 pipeline {
-  agent {
-    kubernetes {
-      defaultContainer 'maven'
-      yamlFile 'KubernetesPod.yaml'
+    agent { dockerfile true }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+                sh 'svn --version'
+            }
+        }
     }
-  }
-
-  stages {
-    stage('Run maven') {
-      steps {
-        sh 'mvn -version'
-        sh "echo Workspace dir is ${pwd()}"
-      }
-    }
-  }
 }
