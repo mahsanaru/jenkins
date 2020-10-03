@@ -1,4 +1,3 @@
-
 Jenkinsfile (Declarative Pipeline)
 
 pipeline {
@@ -11,4 +10,3 @@ pipeline {
         }
     }
 }
-
