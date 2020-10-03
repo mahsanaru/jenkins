@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'echo "Success!"; exit 0'
+                sh 'python test.py"; exit 0'
             }
         }
     }
