@@ -1,9 +1,5 @@
 pipeline {
 
-  environment {
-    registry = "192.168.1.126:5000/test"
-    dockerImage = ""
-  }
 
   agent any
 
