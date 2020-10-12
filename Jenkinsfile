@@ -1,32 +1,12 @@
 pipeline {
-
-
-  agent any
-
-  stages {
-
-    stage('Checkout Source') {
-      steps {
-        git 'https://github.com/mahsanaru/jenkins.git'
-      }
+    agent {
+        docker { image 'node:14-alpine' }
     }
-
-    stage('Build image') {
-      steps{
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
         }
-      }
     }
-
-    stage('Deploy App') {
-      steps {
-        script {
-          kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "mykubeconfig")
-        }
-      }
-    }
-
-  }
-
 }
