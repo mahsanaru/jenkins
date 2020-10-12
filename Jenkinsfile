@@ -13,9 +13,8 @@ pipeline {
     stage('Deploy App') {
       steps {
         script {
-          
-          kubernetesDeploy(kubeconfigId: 'myKubeconfig',
-                          configs: 'myweb.yaml')
+          kubernetesDeploy configs: 'myweb.yaml', kubeConfig: [path: ''], kubeconfigId: 'myKubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+          #kubernetesDeploy(kubeconfigId: 'myKubeconfig', configs: 'myweb.yaml')
         }
       }
     }
